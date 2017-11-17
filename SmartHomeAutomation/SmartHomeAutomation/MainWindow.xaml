@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHomeAutomation"
         xmlns:customControls="clr-namespace:SmartHomeAutomation.CustomControls"
+        xmlns:adminControls="clr-namespace:SmartHomeAutomation.AdminControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
@@ -21,7 +22,7 @@
             <RowDefinition Height="0"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Column="1" Grid.Row="1">
-            <customControls:LoginPanel></customControls:LoginPanel>
+            <adminControls:DatabasePanel></adminControls:DatabasePanel>
         </Grid>
         <StatusBar Grid.Column="1" Grid.Row="3">
             <StatusBarItem>
