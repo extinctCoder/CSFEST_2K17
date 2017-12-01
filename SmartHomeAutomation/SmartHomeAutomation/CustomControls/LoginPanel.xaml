@@ -32,19 +32,10 @@
                 <RowDefinition Height="5"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="5"></RowDefinition>
             </Grid.RowDefinitions>
-            <ComboBox Grid.Column="1" Grid.Row="1" x:Name="database_cbox" IsEditable="True">
-                <ComboBoxItem Content="central database"></ComboBoxItem>
-                <ComboBoxItem Content="model one database"></ComboBoxItem>
-                <ComboBoxItem Content="model two database"></ComboBoxItem>
-                <ComboBoxItem Content="model three database"></ComboBoxItem>
-                <ComboBoxItem Content="model four database"></ComboBoxItem>
-            </ComboBox>
-            <TextBox Grid.Column="1" Grid.Row="3" x:Name="userid_txt" materialDesign:HintAssist.Hint="user id" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-            <PasswordBox Grid.Column="1" Grid.Row="5" x:Name="password_txt" materialDesign:HintAssist.Hint="password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"></PasswordBox>
-            <Button Grid.Column="1" Grid.Row="7" x:Name="login_btn" Click="Login_btn_OnClick" Content="log in"></Button>
+            <TextBox Grid.Column="1" Grid.Row="1" x:Name="userid_txt" KeyUp="Userid_txt_OnKeyUp" materialDesign:HintAssist.Hint="user id" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <PasswordBox Grid.Column="1" Grid.Row="3" x:Name="password_txt" KeyUp="Password_txt_OnKeyUp" materialDesign:HintAssist.Hint="password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"></PasswordBox>
+            <Button Grid.Column="1" Grid.Row="5" x:Name="login_btn" Click="Login_btn_OnClick" Content="log in"></Button>
         </Grid>
     </Grid>
 </UserControl>

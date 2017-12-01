@@ -12,12 +12,28 @@ namespace SmartHomeAutomation.db
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class user
     {
-        public int idUser { get; set; }
-        public string nameUser { get; set; }
-        public string passwordUser { get; set; }
-        public string privilegeUser { get; set; }
-        public string addressUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public user()
+        {
+            this.control_panel = new HashSet<control_panel>();
+            this.permissions = new HashSet<permission>();
+            this.user_group = new HashSet<user_group>();
+        }
+    
+        public int id { get; set; }
+        public string user_name { get; set; }
+        public string first_name { get; set; }
+        public string middle_name { get; set; }
+        public string last_name { get; set; }
+        public string password { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<control_panel> control_panel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<permission> permissions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user_group> user_group { get; set; }
     }
 }

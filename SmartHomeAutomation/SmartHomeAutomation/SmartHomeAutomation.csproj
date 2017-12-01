@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -58,6 +61,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,6 +76,24 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -80,7 +104,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ComponentModel\Component.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComponentModel\ControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComponentModel\Room.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\LoginPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\StatusBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -95,89 +135,66 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ComponentModel\Component.xaml.cs">
+      <DependentUpon>Component.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComponentModel\ControlPanel.xaml.cs">
+      <DependentUpon>ControlPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComponentModel\Room.xaml.cs">
+      <DependentUpon>Room.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\LoginPanel.xaml.cs">
       <DependentUpon>LoginPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationCentralDatabaseContex.Context.cs">
+    <Compile Include="CustomControls\StatusBar.xaml.cs">
+      <DependentUpon>StatusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\dbHandler.cs" />
+    <Compile Include="db\action.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\component.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\control_panel.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\datum.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\HomeAutomationDBContex.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationCentralDatabaseContex.Context.tt</DependentUpon>
+      <DependentUpon>HomeAutomationDBContex.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationCentralDatabaseContex.cs">
+    <Compile Include="db\HomeAutomationDBContex.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationCentralDatabaseContex.tt</DependentUpon>
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationCentralDatabaseContex.Designer.cs">
+    <Compile Include="db\HomeAutomationDBContex.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationCentralDatabaseContex.edmx</DependentUpon>
+      <DependentUpon>HomeAutomationDBContex.edmx</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationModel_1_DatabaseContex.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_1_DatabaseContex.Context.tt</DependentUpon>
+    <Compile Include="db\permission.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationModel_1_DatabaseContex.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_1_DatabaseContex.tt</DependentUpon>
+    <Compile Include="db\room.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationModel_1_DatabaseContex.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_1_DatabaseContex.edmx</DependentUpon>
+    <Compile Include="db\scheduler.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationModel_2_DatabaseContex.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_2_DatabaseContex.Context.tt</DependentUpon>
+    <Compile Include="db\switch_condition.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationModel_2_DatabaseContex.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_2_DatabaseContex.tt</DependentUpon>
+    <Compile Include="db\user.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
     </Compile>
-    <Compile Include="db\HomeAutomationModel_2_DatabaseContex.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_2_DatabaseContex.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="db\HomeAutomationModel_3_DatabaseContex.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_3_DatabaseContex.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\HomeAutomationModel_3_DatabaseContex.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_3_DatabaseContex.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\HomeAutomationModel_3_DatabaseContex.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_3_DatabaseContex.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="db\HomeAutomationModel_4_DatabaseContex.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_4_DatabaseContex.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\HomeAutomationModel_4_DatabaseContex.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_4_DatabaseContex.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\HomeAutomationModel_4_DatabaseContex.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomeAutomationModel_4_DatabaseContex.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="db\User.cs">
-      <DependentUpon>HomeAutomationCentralDatabaseContex.tt</DependentUpon>
-    </Compile>
-    <Compile Include="db\UsersDatabaseDetail.cs">
-      <DependentUpon>HomeAutomationCentralDatabaseContex.tt</DependentUpon>
+    <Compile Include="db\user_group.cs">
+      <DependentUpon>HomeAutomationDBContex.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -202,40 +219,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="db\HomeAutomationModel_1_DatabaseContex.edmx">
+    <EntityDeploy Include="db\HomeAutomationDBContex.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HomeAutomationModel_1_DatabaseContex.Designer.cs</LastGenOutput>
+      <LastGenOutput>HomeAutomationDBContex.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <EntityDeploy Include="db\HomeAutomationCentralDatabaseContex.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HomeAutomationCentralDatabaseContex.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="db\HomeAutomationCentralDatabaseContex.edmx.diagram">
-      <DependentUpon>HomeAutomationCentralDatabaseContex.edmx</DependentUpon>
-    </None>
-    <None Include="db\HomeAutomationModel_1_DatabaseContex.edmx.diagram">
-      <DependentUpon>HomeAutomationModel_1_DatabaseContex.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="db\HomeAutomationModel_2_DatabaseContex.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HomeAutomationModel_2_DatabaseContex.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="db\HomeAutomationModel_2_DatabaseContex.edmx.diagram">
-      <DependentUpon>HomeAutomationModel_2_DatabaseContex.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="db\HomeAutomationModel_3_DatabaseContex.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HomeAutomationModel_3_DatabaseContex.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="db\HomeAutomationModel_3_DatabaseContex.edmx.diagram">
-      <DependentUpon>HomeAutomationModel_3_DatabaseContex.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="db\HomeAutomationModel_4_DatabaseContex.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HomeAutomationModel_4_DatabaseContex.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="db\HomeAutomationModel_4_DatabaseContex.edmx.diagram">
-      <DependentUpon>HomeAutomationModel_4_DatabaseContex.edmx</DependentUpon>
+    <None Include="db\HomeAutomationDBContex.edmx.diagram">
+      <DependentUpon>HomeAutomationDBContex.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -249,60 +238,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="db\HomeAutomationCentralDatabaseContex.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationCentralDatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationCentralDatabaseContex.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationCentralDatabaseContex.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationCentralDatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationCentralDatabaseContex.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationModel_1_DatabaseContex.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationModel_1_DatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationModel_1_DatabaseContex.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationModel_1_DatabaseContex.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationModel_1_DatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationModel_1_DatabaseContex.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationModel_2_DatabaseContex.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationModel_2_DatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationModel_2_DatabaseContex.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationModel_2_DatabaseContex.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationModel_2_DatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationModel_2_DatabaseContex.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationModel_3_DatabaseContex.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationModel_3_DatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationModel_3_DatabaseContex.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationModel_3_DatabaseContex.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationModel_3_DatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationModel_3_DatabaseContex.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationModel_4_DatabaseContex.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationModel_4_DatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationModel_4_DatabaseContex.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="db\HomeAutomationModel_4_DatabaseContex.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeAutomationModel_4_DatabaseContex.edmx</DependentUpon>
-      <LastGenOutput>HomeAutomationModel_4_DatabaseContex.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AdminControls\dataSource\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="db\HomeAutomationDBContex.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HomeAutomationDBContex.edmx</DependentUpon>
+      <LastGenOutput>HomeAutomationDBContex.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="db\HomeAutomationDBContex.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HomeAutomationDBContex.edmx</DependentUpon>
+      <LastGenOutput>HomeAutomationDBContex.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

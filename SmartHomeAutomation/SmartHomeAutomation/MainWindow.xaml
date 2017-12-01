@@ -1,4 +1,4 @@
-﻿<Window x:Class="SmartHomeAutomation.MainWindow"
+﻿<Controls:MetroWindow x:Class="SmartHomeAutomation.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,8 +6,31 @@
         xmlns:local="clr-namespace:SmartHomeAutomation"
         xmlns:customControls="clr-namespace:SmartHomeAutomation.CustomControls"
         xmlns:adminControls="clr-namespace:SmartHomeAutomation.AdminControls"
+        xmlns:componentModel="clr-namespace:SmartHomeAutomation.ComponentModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Home Automation" TitleAlignment="Center"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="settings" />
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                               Height="20"
+                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cupcake}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                               VerticalAlignment="Center"
+                               Text="deploy cupcakes" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0"></ColumnDefinition>
@@ -21,15 +44,11 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="0"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="1" Grid.Row="1">
-            <adminControls:DatabasePanel></adminControls:DatabasePanel>
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="container">
         </Grid>
-        <StatusBar Grid.Column="1" Grid.Row="3">
-            <StatusBarItem>
-                <Label Content="this is the status bar"></Label>
-            </StatusBarItem>
-        </StatusBar>
+        <Grid Grid.Column="1" Grid.Row="3" x:Name="statusbar_grid">
+        </Grid>
     </Grid>
-</Window>
+</Controls:MetroWindow>
 
 

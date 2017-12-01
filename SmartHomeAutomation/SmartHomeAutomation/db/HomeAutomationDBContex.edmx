@@ -1,0 +1,1168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HomeAutomationDbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="action">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="on_value" Type="int" />
+          <Property Name="off_value" Type="int" />
+        </EntityType>
+        <EntityType Name="action_has_component">
+          <Key>
+            <PropertyRef Name="action_id" />
+            <PropertyRef Name="component_id" />
+          </Key>
+          <Property Name="action_id" Type="int" Nullable="false" />
+          <Property Name="component_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="action_has_data">
+          <Key>
+            <PropertyRef Name="action_id" />
+            <PropertyRef Name="data_id" />
+          </Key>
+          <Property Name="action_id" Type="int" Nullable="false" />
+          <Property Name="data_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="action_has_scheduler">
+          <Key>
+            <PropertyRef Name="action_id" />
+            <PropertyRef Name="scheduler_id" />
+          </Key>
+          <Property Name="action_id" Type="int" Nullable="false" />
+          <Property Name="scheduler_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="action_has_switch_condition">
+          <Key>
+            <PropertyRef Name="action_id" />
+            <PropertyRef Name="switch_condition_id" />
+          </Key>
+          <Property Name="action_id" Type="int" Nullable="false" />
+          <Property Name="switch_condition_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="component">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mode" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+          <Property Name="value" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="component_has_data">
+          <Key>
+            <PropertyRef Name="component_id" />
+            <PropertyRef Name="data_id" />
+          </Key>
+          <Property Name="component_id" Type="uint" Nullable="false" />
+          <Property Name="data_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="component_has_room">
+          <Key>
+            <PropertyRef Name="component_id" />
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="component_id" Type="uint" Nullable="false" />
+          <Property Name="room_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="component_has_scheduler">
+          <Key>
+            <PropertyRef Name="component_id" />
+            <PropertyRef Name="scheduler_id" />
+          </Key>
+          <Property Name="component_id" Type="uint" Nullable="false" />
+          <Property Name="scheduler_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="control_panel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+          <Property Name="online_status" Type="tinyint" Nullable="false" />
+          <Property Name="enabaled_status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="control_panel_has_component">
+          <Key>
+            <PropertyRef Name="control_panel_id" />
+            <PropertyRef Name="component_id" />
+          </Key>
+          <Property Name="control_panel_id" Type="uint" Nullable="false" />
+          <Property Name="component_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="control_panel_has_room">
+          <Key>
+            <PropertyRef Name="control_panel_id" />
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="control_panel_id" Type="uint" Nullable="false" />
+          <Property Name="room_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="value" Type="int" Nullable="false" />
+          <Property Name="unit" Type="varchar" MaxLength="45" />
+          <Property Name="data_tyoe" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="data_has_switch_condition">
+          <Key>
+            <PropertyRef Name="data_id" />
+            <PropertyRef Name="switch_condition_id" />
+          </Key>
+          <Property Name="data_id" Type="int" Nullable="false" />
+          <Property Name="switch_condition_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permission">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="permission" Type="enum" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="scheduler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="from" Type="varchar" MaxLength="45" />
+          <Property Name="to" Type="varchar" MaxLength="45" />
+          <Property Name="freq" Type="varchar" MaxLength="45" />
+          <Property Name="freq_unit" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="switch_condition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="evaluator" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="45" />
+          <Property Name="middle_name" Type="varchar" MaxLength="45" />
+          <Property Name="last_name" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_group">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="user_group_has_permission">
+          <Key>
+            <PropertyRef Name="user_group_id" />
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="user_group_id" Type="int" Nullable="false" />
+          <Property Name="permission_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_has_control_panel">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="control_panel_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="control_panel_id" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_has_permission">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="permission_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_has_user_group">
+          <Key>
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="user_group_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_group_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_action_has_component_action1">
+          <End Role="action" Type="Self.action" Multiplicity="1" />
+          <End Role="action_has_component" Type="Self.action_has_component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="action">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="action_has_component">
+              <PropertyRef Name="action_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_action_has_component_component1">
+          <End Role="component" Type="Self.component" Multiplicity="1" />
+          <End Role="action_has_component" Type="Self.action_has_component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="component">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="action_has_component">
+              <PropertyRef Name="component_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_action_has_data_action1">
+          <End Role="action" Type="Self.action" Multiplicity="1" />
+          <End Role="action_has_data" Type="Self.action_has_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="action">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="action_has_data">
+              <PropertyRef Name="action_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_action_has_data_data1">
+          <End Role="data" Type="Self.data" Multiplicity="1" />
+          <End Role="action_has_data" Type="Self.action_has_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="data">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="action_has_data">
+              <PropertyRef Name="data_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_action_has_scheduler_action1">
+          <End Role="action" Type="Self.action" Multiplicity="1" />
+          <End Role="action_has_scheduler" Type="Self.action_has_scheduler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="action">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="action_has_scheduler">
+              <PropertyRef Name="action_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_action_has_scheduler_scheduler1">
+          <End Role="scheduler" Type="Self.scheduler" Multiplicity="1" />
+          <End Role="action_has_scheduler" Type="Self.action_has_scheduler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scheduler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="action_has_scheduler">
+              <PropertyRef Name="scheduler_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_action_has_switch_condition_action1">
+          <End Role="action" Type="Self.action" Multiplicity="1" />
+          <End Role="action_has_switch_condition" Type="Self.action_has_switch_condition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="action">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="action_has_switch_condition">
+              <PropertyRef Name="action_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_action_has_switch_condition_switch_condition1">
+          <End Role="switch_condition" Type="Self.switch_condition" Multiplicity="1" />
+          <End Role="action_has_switch_condition" Type="Self.action_has_switch_condition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="switch_condition">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="action_has_switch_condition">
+              <PropertyRef Name="switch_condition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_component_has_data_component1">
+          <End Role="component" Type="Self.component" Multiplicity="1" />
+          <End Role="component_has_data" Type="Self.component_has_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="component">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="component_has_data">
+              <PropertyRef Name="component_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_component_has_data_data1">
+          <End Role="data" Type="Self.data" Multiplicity="1" />
+          <End Role="component_has_data" Type="Self.component_has_data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="data">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="component_has_data">
+              <PropertyRef Name="data_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_component_has_room_component1">
+          <End Role="component" Type="Self.component" Multiplicity="1" />
+          <End Role="component_has_room" Type="Self.component_has_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="component">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="component_has_room">
+              <PropertyRef Name="component_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_component_has_room_room1">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="component_has_room" Type="Self.component_has_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="component_has_room">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_component_has_scheduler_component1">
+          <End Role="component" Type="Self.component" Multiplicity="1" />
+          <End Role="component_has_scheduler" Type="Self.component_has_scheduler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="component">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="component_has_scheduler">
+              <PropertyRef Name="component_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_component_has_scheduler_scheduler1">
+          <End Role="scheduler" Type="Self.scheduler" Multiplicity="1" />
+          <End Role="component_has_scheduler" Type="Self.component_has_scheduler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scheduler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="component_has_scheduler">
+              <PropertyRef Name="scheduler_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_control_panel_has_component_component1">
+          <End Role="component" Type="Self.component" Multiplicity="1" />
+          <End Role="control_panel_has_component" Type="Self.control_panel_has_component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="component">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="control_panel_has_component">
+              <PropertyRef Name="component_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_control_panel_has_component_control_panel1">
+          <End Role="control_panel" Type="Self.control_panel" Multiplicity="1" />
+          <End Role="control_panel_has_component" Type="Self.control_panel_has_component" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="control_panel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="control_panel_has_component">
+              <PropertyRef Name="control_panel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_control_panel_has_room_control_panel1">
+          <End Role="control_panel" Type="Self.control_panel" Multiplicity="1" />
+          <End Role="control_panel_has_room" Type="Self.control_panel_has_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="control_panel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="control_panel_has_room">
+              <PropertyRef Name="control_panel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_control_panel_has_room_room1">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="control_panel_has_room" Type="Self.control_panel_has_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="control_panel_has_room">
+              <PropertyRef Name="room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_data_has_switch_condition_data1">
+          <End Role="data" Type="Self.data" Multiplicity="1" />
+          <End Role="data_has_switch_condition" Type="Self.data_has_switch_condition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="data">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data_has_switch_condition">
+              <PropertyRef Name="data_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_data_has_switch_condition_switch_condition1">
+          <End Role="switch_condition" Type="Self.switch_condition" Multiplicity="1" />
+          <End Role="data_has_switch_condition" Type="Self.data_has_switch_condition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="switch_condition">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data_has_switch_condition">
+              <PropertyRef Name="switch_condition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_group_has_permission_permission1">
+          <End Role="permission" Type="Self.permission" Multiplicity="1" />
+          <End Role="user_group_has_permission" Type="Self.user_group_has_permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permission">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_group_has_permission">
+              <PropertyRef Name="permission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_group_has_permission_user_group1">
+          <End Role="user_group" Type="Self.user_group" Multiplicity="1" />
+          <End Role="user_group_has_permission" Type="Self.user_group_has_permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_group_has_permission">
+              <PropertyRef Name="user_group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_has_control_panel_control_panel1">
+          <End Role="control_panel" Type="Self.control_panel" Multiplicity="1" />
+          <End Role="user_has_control_panel" Type="Self.user_has_control_panel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="control_panel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_has_control_panel">
+              <PropertyRef Name="control_panel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_has_control_panel_user1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="user_has_control_panel" Type="Self.user_has_control_panel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_has_control_panel">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_has_permission_permission1">
+          <End Role="permission" Type="Self.permission" Multiplicity="1" />
+          <End Role="user_has_permission" Type="Self.user_has_permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permission">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_has_permission">
+              <PropertyRef Name="permission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_has_permission_user1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="user_has_permission" Type="Self.user_has_permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_has_permission">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_has_user_group_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="user_has_user_group" Type="Self.user_has_user_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_has_user_group">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_has_user_group_user_group1">
+          <End Role="user_group" Type="Self.user_group" Multiplicity="1" />
+          <End Role="user_has_user_group" Type="Self.user_has_user_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_has_user_group">
+              <PropertyRef Name="user_group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HomeAutomationDbModelStoreContainer">
+          <EntitySet Name="action" EntityType="Self.action" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="action_has_component" EntityType="Self.action_has_component" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="action_has_data" EntityType="Self.action_has_data" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="action_has_scheduler" EntityType="Self.action_has_scheduler" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="action_has_switch_condition" EntityType="Self.action_has_switch_condition" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="component" EntityType="Self.component" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="component_has_data" EntityType="Self.component_has_data" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="component_has_room" EntityType="Self.component_has_room" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="component_has_scheduler" EntityType="Self.component_has_scheduler" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="control_panel" EntityType="Self.control_panel" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="control_panel_has_component" EntityType="Self.control_panel_has_component" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="control_panel_has_room" EntityType="Self.control_panel_has_room" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="data" EntityType="Self.data" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="data_has_switch_condition" EntityType="Self.data_has_switch_condition" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="permission" EntityType="Self.permission" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="room" EntityType="Self.room" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="scheduler" EntityType="Self.scheduler" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="switch_condition" EntityType="Self.switch_condition" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="user_group" EntityType="Self.user_group" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="user_group_has_permission" EntityType="Self.user_group_has_permission" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="user_has_control_panel" EntityType="Self.user_has_control_panel" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="user_has_permission" EntityType="Self.user_has_permission" Schema="HomeAutomationDb" store:Type="Tables" />
+          <EntitySet Name="user_has_user_group" EntityType="Self.user_has_user_group" Schema="HomeAutomationDb" store:Type="Tables" />
+          <AssociationSet Name="fk_action_has_component_action1" Association="Self.fk_action_has_component_action1">
+            <End Role="action" EntitySet="action" />
+            <End Role="action_has_component" EntitySet="action_has_component" />
+          </AssociationSet>
+          <AssociationSet Name="fk_action_has_component_component1" Association="Self.fk_action_has_component_component1">
+            <End Role="component" EntitySet="component" />
+            <End Role="action_has_component" EntitySet="action_has_component" />
+          </AssociationSet>
+          <AssociationSet Name="fk_action_has_data_action1" Association="Self.fk_action_has_data_action1">
+            <End Role="action" EntitySet="action" />
+            <End Role="action_has_data" EntitySet="action_has_data" />
+          </AssociationSet>
+          <AssociationSet Name="fk_action_has_data_data1" Association="Self.fk_action_has_data_data1">
+            <End Role="data" EntitySet="data" />
+            <End Role="action_has_data" EntitySet="action_has_data" />
+          </AssociationSet>
+          <AssociationSet Name="fk_action_has_scheduler_action1" Association="Self.fk_action_has_scheduler_action1">
+            <End Role="action" EntitySet="action" />
+            <End Role="action_has_scheduler" EntitySet="action_has_scheduler" />
+          </AssociationSet>
+          <AssociationSet Name="fk_action_has_scheduler_scheduler1" Association="Self.fk_action_has_scheduler_scheduler1">
+            <End Role="scheduler" EntitySet="scheduler" />
+            <End Role="action_has_scheduler" EntitySet="action_has_scheduler" />
+          </AssociationSet>
+          <AssociationSet Name="fk_action_has_switch_condition_action1" Association="Self.fk_action_has_switch_condition_action1">
+            <End Role="action" EntitySet="action" />
+            <End Role="action_has_switch_condition" EntitySet="action_has_switch_condition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_action_has_switch_condition_switch_condition1" Association="Self.fk_action_has_switch_condition_switch_condition1">
+            <End Role="switch_condition" EntitySet="switch_condition" />
+            <End Role="action_has_switch_condition" EntitySet="action_has_switch_condition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_component_has_data_component1" Association="Self.fk_component_has_data_component1">
+            <End Role="component" EntitySet="component" />
+            <End Role="component_has_data" EntitySet="component_has_data" />
+          </AssociationSet>
+          <AssociationSet Name="fk_component_has_data_data1" Association="Self.fk_component_has_data_data1">
+            <End Role="data" EntitySet="data" />
+            <End Role="component_has_data" EntitySet="component_has_data" />
+          </AssociationSet>
+          <AssociationSet Name="fk_component_has_room_component1" Association="Self.fk_component_has_room_component1">
+            <End Role="component" EntitySet="component" />
+            <End Role="component_has_room" EntitySet="component_has_room" />
+          </AssociationSet>
+          <AssociationSet Name="fk_component_has_room_room1" Association="Self.fk_component_has_room_room1">
+            <End Role="room" EntitySet="room" />
+            <End Role="component_has_room" EntitySet="component_has_room" />
+          </AssociationSet>
+          <AssociationSet Name="fk_component_has_scheduler_component1" Association="Self.fk_component_has_scheduler_component1">
+            <End Role="component" EntitySet="component" />
+            <End Role="component_has_scheduler" EntitySet="component_has_scheduler" />
+          </AssociationSet>
+          <AssociationSet Name="fk_component_has_scheduler_scheduler1" Association="Self.fk_component_has_scheduler_scheduler1">
+            <End Role="scheduler" EntitySet="scheduler" />
+            <End Role="component_has_scheduler" EntitySet="component_has_scheduler" />
+          </AssociationSet>
+          <AssociationSet Name="fk_control_panel_has_component_component1" Association="Self.fk_control_panel_has_component_component1">
+            <End Role="component" EntitySet="component" />
+            <End Role="control_panel_has_component" EntitySet="control_panel_has_component" />
+          </AssociationSet>
+          <AssociationSet Name="fk_control_panel_has_component_control_panel1" Association="Self.fk_control_panel_has_component_control_panel1">
+            <End Role="control_panel" EntitySet="control_panel" />
+            <End Role="control_panel_has_component" EntitySet="control_panel_has_component" />
+          </AssociationSet>
+          <AssociationSet Name="fk_control_panel_has_room_control_panel1" Association="Self.fk_control_panel_has_room_control_panel1">
+            <End Role="control_panel" EntitySet="control_panel" />
+            <End Role="control_panel_has_room" EntitySet="control_panel_has_room" />
+          </AssociationSet>
+          <AssociationSet Name="fk_control_panel_has_room_room1" Association="Self.fk_control_panel_has_room_room1">
+            <End Role="room" EntitySet="room" />
+            <End Role="control_panel_has_room" EntitySet="control_panel_has_room" />
+          </AssociationSet>
+          <AssociationSet Name="fk_data_has_switch_condition_data1" Association="Self.fk_data_has_switch_condition_data1">
+            <End Role="data" EntitySet="data" />
+            <End Role="data_has_switch_condition" EntitySet="data_has_switch_condition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_data_has_switch_condition_switch_condition1" Association="Self.fk_data_has_switch_condition_switch_condition1">
+            <End Role="switch_condition" EntitySet="switch_condition" />
+            <End Role="data_has_switch_condition" EntitySet="data_has_switch_condition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_group_has_permission_permission1" Association="Self.fk_user_group_has_permission_permission1">
+            <End Role="permission" EntitySet="permission" />
+            <End Role="user_group_has_permission" EntitySet="user_group_has_permission" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_group_has_permission_user_group1" Association="Self.fk_user_group_has_permission_user_group1">
+            <End Role="user_group" EntitySet="user_group" />
+            <End Role="user_group_has_permission" EntitySet="user_group_has_permission" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_has_control_panel_control_panel1" Association="Self.fk_user_has_control_panel_control_panel1">
+            <End Role="control_panel" EntitySet="control_panel" />
+            <End Role="user_has_control_panel" EntitySet="user_has_control_panel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_has_control_panel_user1" Association="Self.fk_user_has_control_panel_user1">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_has_control_panel" EntitySet="user_has_control_panel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_has_permission_permission1" Association="Self.fk_user_has_permission_permission1">
+            <End Role="permission" EntitySet="permission" />
+            <End Role="user_has_permission" EntitySet="user_has_permission" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_has_permission_user1" Association="Self.fk_user_has_permission_user1">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_has_permission" EntitySet="user_has_permission" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_has_user_group_user" Association="Self.fk_user_has_user_group_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_has_user_group" EntitySet="user_has_user_group" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_has_user_group_user_group1" Association="Self.fk_user_has_user_group_user_group1">
+            <End Role="user_group" EntitySet="user_group" />
+            <End Role="user_has_user_group" EntitySet="user_has_user_group" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HomeAutomationDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="action">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="on_value" Type="Int32" />
+          <Property Name="off_value" Type="Int32" />
+          <NavigationProperty Name="components" Relationship="Self.action_has_component" FromRole="action" ToRole="component" />
+          <NavigationProperty Name="data" Relationship="Self.action_has_data" FromRole="action" ToRole="data" />
+          <NavigationProperty Name="switch_condition" Relationship="Self.action_has_switch_condition" FromRole="action" ToRole="switch_condition" />
+          <NavigationProperty Name="schedulers" Relationship="HomeAutomationDbModel.action_has_scheduler" FromRole="action" ToRole="scheduler" />
+        </EntityType>
+        <EntityType Name="component">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mode" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="actions" Relationship="Self.action_has_component" FromRole="component" ToRole="action" />
+          <NavigationProperty Name="data" Relationship="Self.component_has_data" FromRole="component" ToRole="data" />
+          <NavigationProperty Name="rooms" Relationship="Self.component_has_room" FromRole="component" ToRole="room" />
+          <NavigationProperty Name="control_panel" Relationship="Self.control_panel_has_component" FromRole="component" ToRole="control_panel" />
+          <NavigationProperty Name="schedulers" Relationship="HomeAutomationDbModel.component_has_scheduler" FromRole="component" ToRole="scheduler" />
+        </EntityType>
+        <EntityType Name="control_panel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="online_status" Type="SByte" Nullable="false" />
+          <Property Name="enabaled_status" Type="SByte" Nullable="false" />
+          <NavigationProperty Name="components" Relationship="Self.control_panel_has_component" FromRole="control_panel" ToRole="component" />
+          <NavigationProperty Name="rooms" Relationship="Self.control_panel_has_room" FromRole="control_panel" ToRole="room" />
+          <NavigationProperty Name="users" Relationship="Self.user_has_control_panel" FromRole="control_panel" ToRole="user" />
+        </EntityType>
+        <EntityType Name="datum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="value" Type="Int32" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="data_tyoe" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="actions" Relationship="Self.action_has_data" FromRole="data" ToRole="action" />
+          <NavigationProperty Name="components" Relationship="Self.component_has_data" FromRole="data" ToRole="component" />
+          <NavigationProperty Name="switch_condition" Relationship="Self.data_has_switch_condition" FromRole="data" ToRole="switch_condition" />
+        </EntityType>
+        <EntityType Name="permission">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="permission1" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user_group" Relationship="Self.user_group_has_permission" FromRole="permission" ToRole="user_group" />
+          <NavigationProperty Name="users" Relationship="Self.user_has_permission" FromRole="permission" ToRole="user" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="components" Relationship="Self.component_has_room" FromRole="room" ToRole="component" />
+          <NavigationProperty Name="control_panel" Relationship="Self.control_panel_has_room" FromRole="room" ToRole="control_panel" />
+        </EntityType>
+        <EntityType Name="scheduler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="from" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="to" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="freq" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="freq_unit" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="actions" Relationship="HomeAutomationDbModel.action_has_scheduler" FromRole="scheduler" ToRole="action" />
+          <NavigationProperty Name="components" Relationship="HomeAutomationDbModel.component_has_scheduler" FromRole="scheduler" ToRole="component" />
+        </EntityType>
+        <EntityType Name="switch_condition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="evaluator" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="actions" Relationship="Self.action_has_switch_condition" FromRole="switch_condition" ToRole="action" />
+          <NavigationProperty Name="data" Relationship="Self.data_has_switch_condition" FromRole="switch_condition" ToRole="data" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="middle_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="control_panel" Relationship="Self.user_has_control_panel" FromRole="user" ToRole="control_panel" />
+          <NavigationProperty Name="permissions" Relationship="Self.user_has_permission" FromRole="user" ToRole="permission" />
+          <NavigationProperty Name="user_group" Relationship="Self.user_has_user_group" FromRole="user" ToRole="user_group" />
+        </EntityType>
+        <EntityType Name="user_group">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="permissions" Relationship="Self.user_group_has_permission" FromRole="user_group" ToRole="permission" />
+          <NavigationProperty Name="users" Relationship="Self.user_has_user_group" FromRole="user_group" ToRole="user" />
+        </EntityType>
+        <Association Name="action_has_component">
+          <End Role="action" Type="Self.action" Multiplicity="*" />
+          <End Role="component" Type="Self.component" Multiplicity="*" />
+        </Association>
+        <Association Name="action_has_data">
+          <End Role="action" Type="Self.action" Multiplicity="*" />
+          <End Role="data" Type="Self.datum" Multiplicity="*" />
+        </Association>
+        <Association Name="action_has_switch_condition">
+          <End Role="action" Type="Self.action" Multiplicity="*" />
+          <End Role="switch_condition" Type="Self.switch_condition" Multiplicity="*" />
+        </Association>
+        <Association Name="component_has_data">
+          <End Role="component" Type="Self.component" Multiplicity="*" />
+          <End Role="data" Type="Self.datum" Multiplicity="*" />
+        </Association>
+        <Association Name="component_has_room">
+          <End Role="component" Type="Self.component" Multiplicity="*" />
+          <End Role="room" Type="Self.room" Multiplicity="*" />
+        </Association>
+        <Association Name="control_panel_has_component">
+          <End Role="component" Type="Self.component" Multiplicity="*" />
+          <End Role="control_panel" Type="Self.control_panel" Multiplicity="*" />
+        </Association>
+        <Association Name="control_panel_has_room">
+          <End Role="control_panel" Type="Self.control_panel" Multiplicity="*" />
+          <End Role="room" Type="Self.room" Multiplicity="*" />
+        </Association>
+        <Association Name="data_has_switch_condition">
+          <End Role="data" Type="Self.datum" Multiplicity="*" />
+          <End Role="switch_condition" Type="Self.switch_condition" Multiplicity="*" />
+        </Association>
+        <Association Name="user_group_has_permission">
+          <End Role="permission" Type="Self.permission" Multiplicity="*" />
+          <End Role="user_group" Type="Self.user_group" Multiplicity="*" />
+        </Association>
+        <Association Name="user_has_control_panel">
+          <End Role="control_panel" Type="Self.control_panel" Multiplicity="*" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <Association Name="user_has_permission">
+          <End Role="permission" Type="Self.permission" Multiplicity="*" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+        </Association>
+        <Association Name="user_has_user_group">
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <End Role="user_group" Type="Self.user_group" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="HomeAutomationDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actions" EntityType="Self.action" />
+          <EntitySet Name="components" EntityType="Self.component" />
+          <EntitySet Name="control_panel" EntityType="Self.control_panel" />
+          <EntitySet Name="data" EntityType="Self.datum" />
+          <EntitySet Name="permissions" EntityType="Self.permission" />
+          <EntitySet Name="rooms" EntityType="Self.room" />
+          <EntitySet Name="schedulers" EntityType="Self.scheduler" />
+          <EntitySet Name="switch_condition" EntityType="Self.switch_condition" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="user_group" EntityType="Self.user_group" />
+          <AssociationSet Name="action_has_component" Association="Self.action_has_component">
+            <End Role="action" EntitySet="actions" />
+            <End Role="component" EntitySet="components" />
+          </AssociationSet>
+          <AssociationSet Name="action_has_data" Association="Self.action_has_data">
+            <End Role="action" EntitySet="actions" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="action_has_switch_condition" Association="Self.action_has_switch_condition">
+            <End Role="action" EntitySet="actions" />
+            <End Role="switch_condition" EntitySet="switch_condition" />
+          </AssociationSet>
+          <AssociationSet Name="component_has_data" Association="Self.component_has_data">
+            <End Role="component" EntitySet="components" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="component_has_room" Association="Self.component_has_room">
+            <End Role="component" EntitySet="components" />
+            <End Role="room" EntitySet="rooms" />
+          </AssociationSet>
+          <AssociationSet Name="control_panel_has_component" Association="Self.control_panel_has_component">
+            <End Role="component" EntitySet="components" />
+            <End Role="control_panel" EntitySet="control_panel" />
+          </AssociationSet>
+          <AssociationSet Name="control_panel_has_room" Association="Self.control_panel_has_room">
+            <End Role="control_panel" EntitySet="control_panel" />
+            <End Role="room" EntitySet="rooms" />
+          </AssociationSet>
+          <AssociationSet Name="data_has_switch_condition" Association="Self.data_has_switch_condition">
+            <End Role="data" EntitySet="data" />
+            <End Role="switch_condition" EntitySet="switch_condition" />
+          </AssociationSet>
+          <AssociationSet Name="user_group_has_permission" Association="Self.user_group_has_permission">
+            <End Role="permission" EntitySet="permissions" />
+            <End Role="user_group" EntitySet="user_group" />
+          </AssociationSet>
+          <AssociationSet Name="user_has_control_panel" Association="Self.user_has_control_panel">
+            <End Role="control_panel" EntitySet="control_panel" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="user_has_permission" Association="Self.user_has_permission">
+            <End Role="permission" EntitySet="permissions" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="user_has_user_group" Association="Self.user_has_user_group">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_group" EntitySet="user_group" />
+          </AssociationSet>
+          <AssociationSet Name="action_has_scheduler" Association="HomeAutomationDbModel.action_has_scheduler">
+            <End Role="action" EntitySet="actions" />
+            <End Role="scheduler" EntitySet="schedulers" />
+          </AssociationSet>
+          <AssociationSet Name="component_has_scheduler" Association="HomeAutomationDbModel.component_has_scheduler">
+            <End Role="component" EntitySet="components" />
+            <End Role="scheduler" EntitySet="schedulers" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="action_has_scheduler">
+          <End Type="HomeAutomationDbModel.action" Role="action" Multiplicity="*" />
+          <End Type="HomeAutomationDbModel.scheduler" Role="scheduler" Multiplicity="*" />
+        </Association>
+        <Association Name="component_has_scheduler">
+          <End Type="HomeAutomationDbModel.component" Role="component" Multiplicity="*" />
+          <End Type="HomeAutomationDbModel.scheduler" Role="scheduler" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HomeAutomationDbModelStoreContainer" CdmEntityContainer="HomeAutomationDbEntities">
+          <EntitySetMapping Name="actions">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.action">
+              <MappingFragment StoreEntitySet="action">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="on_value" ColumnName="on_value" />
+                <ScalarProperty Name="off_value" ColumnName="off_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="components">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.component">
+              <MappingFragment StoreEntitySet="component">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mode" ColumnName="mode" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="control_panel">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.control_panel">
+              <MappingFragment StoreEntitySet="control_panel">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="online_status" ColumnName="online_status" />
+                <ScalarProperty Name="enabaled_status" ColumnName="enabaled_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="data">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.datum">
+              <MappingFragment StoreEntitySet="data">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="data_tyoe" ColumnName="data_tyoe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permissions">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.permission">
+              <MappingFragment StoreEntitySet="permission">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="permission1" ColumnName="permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rooms">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.room">
+              <MappingFragment StoreEntitySet="room">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schedulers">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.scheduler">
+              <MappingFragment StoreEntitySet="scheduler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="from" ColumnName="from" />
+                <ScalarProperty Name="to" ColumnName="to" />
+                <ScalarProperty Name="freq" ColumnName="freq" />
+                <ScalarProperty Name="freq_unit" ColumnName="freq_unit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="switch_condition">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.switch_condition">
+              <MappingFragment StoreEntitySet="switch_condition">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="evaluator" ColumnName="evaluator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_group">
+            <EntityTypeMapping TypeName="HomeAutomationDbModel.user_group">
+              <MappingFragment StoreEntitySet="user_group">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="action_has_component" TypeName="HomeAutomationDbModel.action_has_component" StoreEntitySet="action_has_component">
+            <EndProperty Name="action">
+              <ScalarProperty Name="id" ColumnName="action_id" />
+            </EndProperty>
+            <EndProperty Name="component">
+              <ScalarProperty Name="id" ColumnName="component_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="action_has_data" TypeName="HomeAutomationDbModel.action_has_data" StoreEntitySet="action_has_data">
+            <EndProperty Name="action">
+              <ScalarProperty Name="id" ColumnName="action_id" />
+            </EndProperty>
+            <EndProperty Name="data">
+              <ScalarProperty Name="id" ColumnName="data_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="action_has_switch_condition" TypeName="HomeAutomationDbModel.action_has_switch_condition" StoreEntitySet="action_has_switch_condition">
+            <EndProperty Name="action">
+              <ScalarProperty Name="id" ColumnName="action_id" />
+            </EndProperty>
+            <EndProperty Name="switch_condition">
+              <ScalarProperty Name="id" ColumnName="switch_condition_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="component_has_data" TypeName="HomeAutomationDbModel.component_has_data" StoreEntitySet="component_has_data">
+            <EndProperty Name="component">
+              <ScalarProperty Name="id" ColumnName="component_id" />
+            </EndProperty>
+            <EndProperty Name="data">
+              <ScalarProperty Name="id" ColumnName="data_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="component_has_room" TypeName="HomeAutomationDbModel.component_has_room" StoreEntitySet="component_has_room">
+            <EndProperty Name="component">
+              <ScalarProperty Name="id" ColumnName="component_id" />
+            </EndProperty>
+            <EndProperty Name="room">
+              <ScalarProperty Name="id" ColumnName="room_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="control_panel_has_component" TypeName="HomeAutomationDbModel.control_panel_has_component" StoreEntitySet="control_panel_has_component">
+            <EndProperty Name="component">
+              <ScalarProperty Name="id" ColumnName="component_id" />
+            </EndProperty>
+            <EndProperty Name="control_panel">
+              <ScalarProperty Name="id" ColumnName="control_panel_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="control_panel_has_room" TypeName="HomeAutomationDbModel.control_panel_has_room" StoreEntitySet="control_panel_has_room">
+            <EndProperty Name="control_panel">
+              <ScalarProperty Name="id" ColumnName="control_panel_id" />
+            </EndProperty>
+            <EndProperty Name="room">
+              <ScalarProperty Name="id" ColumnName="room_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="data_has_switch_condition" TypeName="HomeAutomationDbModel.data_has_switch_condition" StoreEntitySet="data_has_switch_condition">
+            <EndProperty Name="data">
+              <ScalarProperty Name="id" ColumnName="data_id" />
+            </EndProperty>
+            <EndProperty Name="switch_condition">
+              <ScalarProperty Name="id" ColumnName="switch_condition_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="user_group_has_permission" TypeName="HomeAutomationDbModel.user_group_has_permission" StoreEntitySet="user_group_has_permission">
+            <EndProperty Name="permission">
+              <ScalarProperty Name="id" ColumnName="permission_id" />
+            </EndProperty>
+            <EndProperty Name="user_group">
+              <ScalarProperty Name="id" ColumnName="user_group_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="user_has_control_panel" TypeName="HomeAutomationDbModel.user_has_control_panel" StoreEntitySet="user_has_control_panel">
+            <EndProperty Name="control_panel">
+              <ScalarProperty Name="id" ColumnName="control_panel_id" />
+            </EndProperty>
+            <EndProperty Name="user">
+              <ScalarProperty Name="id" ColumnName="user_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="user_has_permission" TypeName="HomeAutomationDbModel.user_has_permission" StoreEntitySet="user_has_permission">
+            <EndProperty Name="permission">
+              <ScalarProperty Name="id" ColumnName="permission_id" />
+            </EndProperty>
+            <EndProperty Name="user">
+              <ScalarProperty Name="id" ColumnName="user_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="user_has_user_group" TypeName="HomeAutomationDbModel.user_has_user_group" StoreEntitySet="user_has_user_group">
+            <EndProperty Name="user">
+              <ScalarProperty Name="id" ColumnName="user_id" />
+            </EndProperty>
+            <EndProperty Name="user_group">
+              <ScalarProperty Name="id" ColumnName="user_group_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="action_has_scheduler" TypeName="HomeAutomationDbModel.action_has_scheduler" StoreEntitySet="action_has_scheduler">
+            <EndProperty Name="scheduler">
+              <ScalarProperty Name="id" ColumnName="scheduler_id" />
+            </EndProperty>
+            <EndProperty Name="action">
+              <ScalarProperty Name="id" ColumnName="action_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="component_has_scheduler" TypeName="HomeAutomationDbModel.component_has_scheduler" StoreEntitySet="component_has_scheduler">
+            <EndProperty Name="scheduler">
+              <ScalarProperty Name="id" ColumnName="scheduler_id" />
+            </EndProperty>
+            <EndProperty Name="component">
+              <ScalarProperty Name="id" ColumnName="component_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

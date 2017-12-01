@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SmartHomeAutomation.db;
+using SmartHomeAutomation.DAL;
 
 namespace SmartHomeAutomation.CustomControls
 {
@@ -22,99 +23,59 @@ namespace SmartHomeAutomation.CustomControls
     /// </summary>
     public partial class LoginPanel : UserControl
     {
+        public static EventHandler LoginEventHandler;
+        public static user _user = null;
         public LoginPanel()
         {
             InitializeComponent();
+            Keyboard.Focus(this.userid_txt);
+        }
+
+        public static user LogedUser
+        {
+            get { return LoginPanel._user; }
+            set { LoginPanel._user = value; }
         }
 
         private void Login_btn_OnClick(object sender, RoutedEventArgs e)
         {
-            try
+            bool _flag = false;
+            foreach (var user in dbHandler.DB.users)
             {
-                if (this.database_cbox.SelectedIndex != -1)
+                if (this.userid_txt.Text == user.id.ToString() && this.password_txt.Password == user.password)
                 {
-                    
-                    if (this.database_cbox.SelectedIndex == 0)
+                    LoginPanel._user = user;
+                    _flag = true;
+                    if (LoginPanel.LoginEventHandler != null)
                     {
-                        using (var db = new HomeAutomationCentralDatabaseEntities())
-                        {
-                            foreach (var dbUser in db.Users)
-                            {
-                                if (dbUser.idUser == Convert.ToInt32(this.userid_txt.Text) &&
-                                    dbUser.passwordUser == this.password_txt.Password)
-                                {
-                                    Debug.WriteLine("Login successful FROM HomeAutomationCentralDatabaseEntities");
-                                    break;
-                                }
-                            }
-                        }
+                        LoginPanel.LoginEventHandler(this, new EventArgs());
                     }
-                    else if (this.database_cbox.SelectedIndex == 1)
-                    {
-                        using (var db = new HomeAutomationModel_1_DatabaseEntities())
-                        {
-                            foreach (var dbUser in db.Users)
-                            {
-                                if (dbUser.idUser == Convert.ToInt32(this.userid_txt.Text) &&
-                                    dbUser.passwordUser == this.password_txt.Password)
-                                {
-                                    Debug.WriteLine("Login successful FROM HomeAutomationModel_1_DatabaseEntities");
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else if (this.database_cbox.SelectedIndex == 2)
-                    {
-                        using (var db = new HomeAutomationModel_2_DatabaseEntities())
-                        {
-                            foreach (var dbUser in db.Users)
-                            {
-                                if (dbUser.idUser == Convert.ToInt32(this.userid_txt.Text) &&
-                                    dbUser.passwordUser == this.password_txt.Password)
-                                {
-                                    Debug.WriteLine("Login successful FROM HomeAutomationModel_2_DatabaseEntities");
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else if (this.database_cbox.SelectedIndex == 3)
-                    {
-                        using (var db = new HomeAutomationModel_3_DatabaseEntities())
-                        {
-                            foreach (var dbUser in db.Users)
-                            {
-                                if (dbUser.idUser == Convert.ToInt32(this.userid_txt.Text) &&
-                                    dbUser.passwordUser == this.password_txt.Password)
-                                {
-                                    Debug.WriteLine("Login successful FROM HomeAutomationModel_3_DatabaseEntities");
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else if (this.database_cbox.SelectedIndex == 4)
-                    {
-                        using (var db = new HomeAutomationModel_4_DatabaseEntities())
-                        {
-                            foreach (var dbUser in db.Users)
-                            {
-                                if (dbUser.idUser == Convert.ToInt32(this.userid_txt.Text) &&
-                                    dbUser.passwordUser == this.password_txt.Password)
-                                {
-                                    Debug.WriteLine("Login successful FROM HomeAutomationModel_4_DatabaseEntities");
-                                    break;
-                                }
-                            }
-                        }
-                    }
+                    break;
                 }
-
             }
-            catch (Exception exception)
+            if (_flag)
             {
-                Debug.WriteLine(exception);
+                StatusBar.setConsoleTxt("Welcome back " + LoginPanel._user.user_name);
+            }
+            else
+            {
+                StatusBar.setConsoleTxt("User not found ... :( ");
+            }
+        }
+
+        private void Userid_txt_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Keyboard.Focus(this.password_txt);
+            }
+        }
+
+        private void Password_txt_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.Login_btn_OnClick(new object(), new AccessKeyPressedEventArgs());
             }
         }
     }

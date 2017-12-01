@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7f7c18df67742499f326ad07e0f1dd6" Name="Diagram1">
+        <EntityTypeShape EntityType="HomeAutomationDbModel.action" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.component" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.control_panel" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.datum" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.permission" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.room" Width="1.5" PointX="10.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.scheduler" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.switch_condition" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.user" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeAutomationDbModel.user_group" Width="1.5" PointX="9.75" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="HomeAutomationDbModel.action_has_component" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.action_has_data" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.action_has_scheduler" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.action_has_switch_condition" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.component_has_data" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.component_has_room" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.component_has_scheduler" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.control_panel_has_component" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.control_panel_has_room" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.data_has_switch_condition" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.user_group_has_permission" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.user_has_control_panel" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.user_has_permission" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeAutomationDbModel.user_has_user_group" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

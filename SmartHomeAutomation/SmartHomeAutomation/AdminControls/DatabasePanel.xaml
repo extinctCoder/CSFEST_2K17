@@ -6,8 +6,58 @@
              xmlns:local="clr-namespace:SmartHomeAutomation.AdminControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Grid>
-            <DataGrid x:Name="DataGrid"></DataGrid>
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             
+             
+             
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:db="clr-namespace:SmartHomeAutomation.db">
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="Grid"></Grid>
+        <TabControl Grid.Column="1" Grid.Row="1">
+            <TabItem Header="action">
+                <xcdg:DataGridControl x:Name="action" Loaded="Action_OnLoaded" ></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="component">
+                <xcdg:DataGridControl x:Name="component" Loaded="Component_OnLoaded" ></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="control_panel">
+                <xcdg:DataGridControl x:Name="control_panel" Loaded="Control_panel_OnLoaded" ></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="data">
+                <xcdg:DataGridControl x:Name="data" Loaded="Data_OnLoaded" ></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="permission">
+                <xcdg:DataGridControl x:Name="permission" Loaded="Permission_OnLoaded" ></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="room">
+                <xcdg:DataGridControl x:Name="room" Loaded="Room_OnLoaded" ></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="scheduler">
+                <xcdg:DataGridControl x:Name="scheduler" Loaded="Scheduler_OnLoaded"></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="switch_condition">
+                <xcdg:DataGridControl x:Name="switch_condition" Loaded="Switch_condition_OnLoaded" ></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="user">
+                <xcdg:DataGridControl x:Name="user" Loaded="User_OnLoaded"></xcdg:DataGridControl>
+            </TabItem>
+            <TabItem Header="user_group">
+                <xcdg:DataGridControl x:Name="user_group" Loaded="User_group_OnLoaded"></xcdg:DataGridControl>
+            </TabItem>
+        </TabControl>
+        <Button Grid.Column="1" Grid.Row="3" x:Name="reload_btn" Click="Reload_btn_OnClick" Content="reload all databases"></Button>
     </Grid>
 </UserControl>
