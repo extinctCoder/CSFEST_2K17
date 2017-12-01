@@ -11,25 +11,39 @@
         Title="Home Automation" TitleAlignment="Center"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
     <Controls:MetroWindow.RightWindowCommands>
-        <Controls:WindowCommands>
-            <Button Content="settings" />
+        <Controls:WindowCommands x:Name="user_panel" Visibility="Hidden">
             <Button>
-                <StackPanel Orientation="Horizontal">
-                    <Rectangle Width="20"
-                               Height="20"
-                               Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0"></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="0"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="0"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Column="1" Grid.Row="1" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
                         <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cupcake}" />
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_user}"></VisualBrush>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-                    <TextBlock Margin="4 0 0 0"
-                               VerticalAlignment="Center"
-                               Text="deploy cupcakes" />
-                </StackPanel>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="username_show_block"></TextBlock>
+                </Grid>
             </Button>
+            <Button Content="logout" Click="ButtonBase_OnClick"></Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
-
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <Menu>
+                <MenuItem Header="  ">dslfksdjfkjhsdkfjds</MenuItem>
+            </Menu>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
 
     <Grid>
         <Grid.ColumnDefinitions>

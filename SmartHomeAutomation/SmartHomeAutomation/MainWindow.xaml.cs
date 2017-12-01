@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ using SmartHomeAutomation.ComponentModel;
 using SmartHomeAutomation.CustomControls;
 using SmartHomeAutomation.db;
 using SmartHomeAutomation.DAL;
+using ThicknessConverter = Xceed.Wpf.DataGrid.Converters.ThicknessConverter;
 
 namespace SmartHomeAutomation
 {
@@ -51,7 +53,18 @@ namespace SmartHomeAutomation
             this.container.Children.Clear();
             this.container.Children.Add(new ControlPanel(LoginPanel.LogedUser.control_panel.First()));
             this._currentUser = LoginPanel.LogedUser;
+            this.user_panel.Visibility = Visibility.Visible;
+            this.username_show_block.Text = this._currentUser.user_name;
         }
 
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            this._currentUser = null;
+            this.user_panel.Visibility = Visibility.Hidden;
+            this.container.Children.Clear();
+            this.container.Children.Add(new LoginPanel());
+            StatusBar.setConsoleTxt("Please login to access user panel");
+        }
     }
+    //db
 }
