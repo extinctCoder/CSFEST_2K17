@@ -66,4 +66,5 @@ namespace SmartHomeAutomation
             StatusBar.setConsoleTxt("Please login to access user panel");
         }
     }
+    //db
 }
