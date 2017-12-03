@@ -14,13 +14,11 @@
 						</td>
 						<td width="30%">&nbsp;</td>
 						<td>
-							<a href="Home.html" >Home <img src="images/home.png"></a>
+							<a href="Home.html" >Home</a>
 						</td>
+						
 						<td width="10%">
-							<a href="Registration.html">Registration<img src="images/registration.png"></a>
-						</td>
-						<td width="10%">
-							<a href="Login.html">Login<img src="images/login.png"></a>
+							<a href="Login.php">Login</a>
 						</td>
 					</tr>
 				</table>
@@ -54,7 +52,7 @@
 						<tr>
 							<td colspan="4" align="center">
 								<a href="ForgetPassword.html">Forget Password</a>
-								<a href="Registration.html">Sign Up
+								
 							</td>
 						</tr>
 					</table>
@@ -77,19 +75,7 @@
 					</tr>
 				</table>
 				
-				<table align="center">
-					<tr>
-						<td align="center" colspan="3">
-							<a href="About_Us.html">About Us   </a>
-						</td>
-						<td align="center" colspan="3">
-							<a href="Contact_Us.html">Contact Us   </a>
-						</td>
-						<td align="center" colspan="3">
-							<a href="privacyPolicy.html">Privacy Policy   </a>
-						</td>
-					</tr>
-				</table>
+			
 			</div>
 		</div>
 	</table>
