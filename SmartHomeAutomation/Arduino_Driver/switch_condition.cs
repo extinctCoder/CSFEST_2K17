@@ -7,39 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHomeAutomation.db
+namespace Arduino_Driver
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class component
+    public partial class switch_condition
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public component()
+        public switch_condition()
         {
             this.actions = new HashSet<action>();
             this.data = new HashSet<datum>();
-            this.rooms = new HashSet<room>();
-            this.schedulers = new HashSet<scheduler>();
-            this.control_panel = new HashSet<control_panel>();
         }
     
         public long id { get; set; }
-        public int mode { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public Nullable<int> value { get; set; }
-        public string type { get; set; }
+        public string evaluator { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<action> actions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<datum> data { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<room> rooms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<scheduler> schedulers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<control_panel> control_panel { get; set; }
     }
 }

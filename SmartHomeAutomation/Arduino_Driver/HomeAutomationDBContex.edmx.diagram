@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="00dadfcd29074bbd928504d8c2bfc1d1" Name="Diagram1">
+      <Diagram DiagramId="2b249f9ece314071bcddd3a40083ae86" Name="Diagram1">
         <EntityTypeShape EntityType="HomeAutomationDbModel.action" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeAutomationDbModel.component" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeAutomationDbModel.control_panel" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />

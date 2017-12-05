@@ -51,10 +51,31 @@ namespace SmartHomeAutomation
         private void LoginEventHandler(object sender, EventArgs eventArgs)
         {
             this.container.Children.Clear();
-            this.container.Children.Add(new ControlPanel(LoginPanel.LogedUser.control_panel.First()));
-            this._currentUser = LoginPanel.LogedUser;
-            this.user_panel.Visibility = Visibility.Visible;
-            this.username_show_block.Text = this._currentUser.user_name;
+            try
+            {
+                this.container.Children.Add(new ControlPanel(LoginPanel.LogedUser.control_panel.First()));
+                this._currentUser = LoginPanel.LogedUser;
+                this.user_panel.Visibility = Visibility.Visible;
+                this.username_show_block.Text = this._currentUser.user_name;
+            }
+            catch (Exception ex)
+            {
+                StatusBar.setConsoleTxt(ex.Message);
+                this.container.Children.Add(new StackPanel()
+                {
+                    Children = { new Label()
+                        {
+                        Content = ex.Message.ToString(),
+                        HorizontalContentAlignment = HorizontalAlignment.Center,
+                        VerticalContentAlignment = VerticalAlignment.Center
+                    
+                        },
+                        new LoginPanel(),
+                    },
+                    //HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
+                });
+            }
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -66,5 +87,4 @@ namespace SmartHomeAutomation
             StatusBar.setConsoleTxt("Please login to access user panel");
         }
     }
-    //db
 }

@@ -7,33 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHomeAutomation.db
+namespace Arduino_Driver
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class action
+    public partial class scheduler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public action()
+        public scheduler()
         {
+            this.actions = new HashSet<action>();
             this.components = new HashSet<component>();
-            this.data = new HashSet<datum>();
-            this.schedulers = new HashSet<scheduler>();
-            this.switch_condition = new HashSet<switch_condition>();
         }
     
         public int id { get; set; }
-        public Nullable<int> on_value { get; set; }
-        public Nullable<int> off_value { get; set; }
+        public string from { get; set; }
+        public string to { get; set; }
+        public string freq { get; set; }
+        public string freq_unit { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<action> actions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<component> components { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<datum> data { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<scheduler> schedulers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<switch_condition> switch_condition { get; set; }
     }
 }
