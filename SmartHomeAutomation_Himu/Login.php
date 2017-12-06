@@ -1,6 +1,5 @@
-<!DOCTYPE>
-<html>
-<head>
+
+<form method="post">
 	<title>Login</title>
 </head>
 <body>
@@ -9,11 +8,9 @@
 			<div>
 				<table align="center" width="100%" border="1">
 					<tr align="right">
-						<td width="30%">
-							<!--<a href="Home.html"><img src="images/logo.png" align="left"></a>-->
-						</td>
-						<td width="30%">&nbsp;</td>
-						<td>
+					
+						<td width="80%">&nbsp;</td>
+						<td width="10%">
 							<a href="Home.html" >Home</a>
 						</td>
 						
@@ -81,3 +78,21 @@
 	</table>
     </table>
 </div>
+</form>
+<?php
+$Name=$_REQUEST['name'];
+$Pass=$_REQUEST['password'];
+$servername="192.168.0.106";
+$username="root";
+$password="";
+$db="HomeAutomationDb";
+$con=mysqli_connect($servername,$username,$password,$db);
+$sql="SELECT * FROM `user` WHERE `user_name` LIKE '$Name' AND `password` LIKE '$Pass'";
+$result=mysqli_query($con,$sql);
+	$c=(mysqli_num_rows($result));
+		if($c==1)
+		{
+		header("location:user_dashboard/Dashboard.php");
+	}
+	mysqli_close($con);
+	?>

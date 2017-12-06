@@ -1,24 +1,23 @@
+<form method="post">
 <html>
 
-<head><title>User DashBoard</title></head>
+<head>
+    <title>User DashBoard</title>
+<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
 
 <body>
-	<table border="1" align="center" width="0%">
+	<table border="1" align="right" width="0%">
     	<tr>
         	<td>
-            	<!-- Header section -->
+       
             	<div>
-                    <table align="center" width="100%">
-                        <td width="20%">
-                            <img src="images/pageicon.png"/>
-                        </td>
-                        <td width="40%">&nbsp;</td>
-                        <td width="40%">
-                            <table align="right">
-                                <td><strong>Logged in as </strong></td>
-                                <td><a href="viewprofile.php">Bob<img src="images/user.png"></a></td>
-                                <td><hr width="1" size="15"></td>
-                                <td><a href="../index.html">Logout<img src="images/logout.png"></a></td>
+                    <table align="right" width="100%">
+                        
+                                
+                                <td><a href="../index.php">Logout</a></td>
                             </table> 
                         </td>
                     </table>
@@ -37,12 +36,7 @@
             	<!-- Body section -->
                <div>
                     <table width="100%">
-                    </table>
-                </div>
-            </td>
-        </tr>
-    </table>
-</body>
+                    
                         <!-- User Menu Section -->
                         <td width="30%">
                             <fieldset>
@@ -50,7 +44,7 @@
                             <strong>Personal Information</strong></legend>
                             <ul>
                                 <li><a href="dashboard.php">Dashboard</a></li>
-                                <li><a href="viewprofile.php">View Profile</a></li>
+                               
                                 
                             </ul>
                         </fieldset>
@@ -59,17 +53,7 @@
                         <fieldset>
                             <legend>
                             <strong>Manage Prescriptions</strong></legend>
-                            <?php
-                            $user='root';
-                            $pass='';
-                            $db='HomeAutomationDb';
-                            $db=new mysqli('192.168.0.106',$user,$pass,$db) or die("
-                            .
-
-
-                            unable to connect");
-                        
-                            ?>
+                            
                                 <ul>
                                 <li><a href="masterbed.php">Mater Bed</a></li>
                                 <li><a href="room.php">Room</a></li>
@@ -79,10 +63,49 @@
                         </fieldset>
                     </td>
                     <td width="70%">
+                         <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label">LED ELEVEN STATUS</label>
+                                <div class="text-right">
+                                    <div id="led_1_Group" class="btn-group" role="group" aria-label="LED ONE STAUS">
+                                        <button type="submit" id="led_1_onn" name="led_1_onn" class="btn btn-success btn-lg" aria-label="LED ONN">LED ONN</button>
+                                        <button type="submit" id="led_1_off" name="led_1_off" class="btn btn-danger btn-lg" aria-label="LED OFF">LED OFF</button>
+                                    </div>
+                                    <p class="help-block">led number ELEVEN control panel</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
                     </td>
                 </table>
             </div>
         </td>
     </tr>
 </body>
+<script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
 </html>
+</form>
+<?php
+$servername="192.168.0.106";
+$username="root";
+$password="";
+$db="HomeAutomationDb";
+$con=mysqli_connect($servername,$username,$password,$db);
+
+
+if(isset($_POST['led_1_onn'])){
+                    echo "led_1_onn";
+                    $sqlstring = "UPDATE `component` SET `mode` = '0' WHERE `component`.`id` = 12";
+                    $dataquery = mysqli_query( $con,$sqlstring);
+                    
+                }
+                if(isset($_POST['led_1_off'])){
+                    echo "led_1_off";
+                    $sqlstring = "UPDATE `component` SET `mode` = '1' WHERE `component`.`id` = 12";
+                    $dataquery = mysqli_query($con,$sqlstring);
+                }
+ ?>
