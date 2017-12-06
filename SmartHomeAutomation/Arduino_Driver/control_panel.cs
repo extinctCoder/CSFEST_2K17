@@ -7,39 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHomeAutomation.db
+namespace Arduino_Driver
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class component
+    public partial class control_panel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public component()
+        public control_panel()
         {
-            this.actions = new HashSet<action>();
-            this.data = new HashSet<datum>();
+            this.components = new HashSet<component>();
             this.rooms = new HashSet<room>();
-            this.schedulers = new HashSet<scheduler>();
-            this.control_panel = new HashSet<control_panel>();
+            this.users = new HashSet<user>();
         }
     
         public long id { get; set; }
-        public int mode { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public Nullable<int> value { get; set; }
-        public string type { get; set; }
+        public sbyte online_status { get; set; }
+        public sbyte enabaled_status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<action> actions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<datum> data { get; set; }
+        public virtual ICollection<component> components { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<room> rooms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<scheduler> schedulers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<control_panel> control_panel { get; set; }
+        public virtual ICollection<user> users { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHomeAutomation.db
+namespace Arduino_Driver
 {
     using System;
     using System.Collections.Generic;

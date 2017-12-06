@@ -56,6 +56,9 @@
       <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Solid.Arduino, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SolidSoils.Arduino.Client.0.4.0\lib\net45\Solid.Arduino.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -253,6 +256,10 @@
     <Folder Include="AdminControls\dataSource\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="db\HomeAutomationDBContex.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HomeAutomationDBContex.edmx</DependentUpon>
@@ -263,8 +270,6 @@
       <DependentUpon>HomeAutomationDBContex.edmx</DependentUpon>
       <LastGenOutput>HomeAutomationDBContex.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\Entypo-license.txt" />
-    <Resource Include="Resources\WindowsIcons-license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

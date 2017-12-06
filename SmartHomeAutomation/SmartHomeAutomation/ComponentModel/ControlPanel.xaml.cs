@@ -54,26 +54,34 @@ namespace SmartHomeAutomation.ComponentModel
 
         private void loadRooms()
         {
-            if (this._controlPanel.rooms != null)
+            try
             {
-                this.label.Visibility = Visibility.Hidden;
-                this.tabControl.Visibility = Visibility.Visible;
-                foreach (var room in this._controlPanel.rooms)
+                if (this._controlPanel.rooms != null && this._controlPanel.rooms.Count >= 1)
                 {
-                    this.tabControl.Items.Add(new TabItem()
+                    this.label.Visibility = Visibility.Hidden;
+                    this.tabControl.Visibility = Visibility.Visible;
+                    foreach (var room in this._controlPanel.rooms)
                     {
-                        Header = room.name.ToUpper(),
-                        Content = new Room(room)
-                    });
-                    StatusBar.setConsoleTxt(room.name + " is created.");
+                        this.tabControl.Items.Add(new TabItem()
+                        {
+                            Header = room.name.ToUpper(),
+                            Content = new Room(room)
+                        });
+                        StatusBar.setConsoleTxt(room.name + " is created.");
+                    }
+                }
+                else
+                {
+                    this.label.Visibility = Visibility.Visible;
+                    this.tabControl.Visibility = Visibility.Hidden;
+                    this.label.Content = "no room is available in database.";
                 }
             }
-            else
+            catch (Exception e)
             {
-                this.label.Visibility = Visibility.Visible;
-                this.tabControl.Visibility = Visibility.Hidden;
-                this.label.Content = "no room is available in database.";
+                StatusBar.setConsoleTxt(e.Message);
             }
+            
         }
         
 

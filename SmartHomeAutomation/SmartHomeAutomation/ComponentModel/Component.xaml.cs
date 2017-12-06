@@ -39,13 +39,20 @@ namespace SmartHomeAutomation.ComponentModel
             this.name_text.Content = this._component.name.ToUpper();
             this.description_text.Content = this._component.description;
             this.id_text.Content = this._component.id.ToString();
-            this.type_text.Content = this._component.type;
             this.mode_value_button.IsChecked = this._component.mode == 1 ? true : false;
             this.value_slider.Value = Convert.ToDouble(this._component.value);
             this.value_slider_text.Text = this._component.value.ToString();
             this.name_edit_text.Text = this._component.name;
-            this.type_edit_text.Text = this._component.type;
             this.description_edit_text.Text = this._component.description;
+            try
+            {
+
+                this.type_text.Content = this._component.type.ToString();
+            }
+            catch (Exception e)
+            {
+                StatusBar.setConsoleTxt(e.Message);
+            }
         }
 
         private void Mode_value_button_OnClick(object sender, RoutedEventArgs e)
@@ -86,7 +93,7 @@ namespace SmartHomeAutomation.ComponentModel
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             this._component.name = this.name_edit_text.Text.ToUpper();
-            this._component.type = this.type_edit_text.Text;
+            //this._component.type = this.type_edit_cbox.Text;
             this._component.description = this.description_edit_text.Text;
             dbHandler.DB.SaveChanges();
             this.name_text.Content = this._component.name;
